@@ -45,6 +45,7 @@ class Chain{
         
         void Swap(int i,int j);//swaps 2 elements of the given chain
         void Output(ostream& out) const;
+        void EachNode(int n) const;
     private:
         ChainNode<T> *first;//pointer to first node
         ChainNode<T> *last;//pointer to last node
@@ -88,7 +89,7 @@ int Chain<T>::Find(int k) const
 {// Set x to k'th element in the chain.
  //Return -1 if no k'th; return x otherwise.
     if(k<1) 
-        throw out_of_range("Invalid element location in Find");;// no k'th
+        throw out_of_range("Invalid element location in Find");// no k'th
     ChainNode<T> *current = first;
     int index = 1;//index of current
     while (current && index < k )
@@ -97,18 +98,14 @@ int Chain<T>::Find(int k) const
         index++;
         
     }
-    
-    
-    
+     
     if(current){    
        int x = current->data;
         return x;
     }
 
     return -1;    
-    
-    
-    
+     
 }
 
 template<class T>
@@ -188,7 +185,7 @@ Chain<T>& Chain<T>::Delete(int k)
 
 
 template<class T>
-Chain<T>& Chain<T>:: Insert(int k, const T& x)
+Chain<T>& Chain<T>::Insert(int k, const T& x)
 {//Insert x after k'th.
 //throw exception if no k'th.
 //throw exception if no space.
@@ -226,7 +223,7 @@ Chain<T>& Chain<T>:: Insert(int k, const T& x)
 }
 
 template<class T>
-Chain<T>& Chain<T>:: Replace(int k, const T& x)
+Chain<T>& Chain<T>::Replace(int k, const T& x)
 {//Insert  k'th with x.
 //throw exception if no k'th.
 
@@ -293,12 +290,57 @@ void Chain<T>::Swap(int i , int j)
    currentlink->data=currentlink2->data;//puts i's data to j's
    currentlink2->data=temp;//puts temp's(j's)data to i's.
 
-
-
-
-
 }
 
+template<class T>
+void Chain<T>::Output(ostream& out) const
+{//Insert the chain elements into the stream out.
+    ChainNode<T> *current;
+
+    for(current = first;current;current = current->link){
+        cout <<current->data<<"  ";
+
+    }
+}
+
+/*
+template<class T>
+void Chain<T>::EachNode(int n) const
+{//Insert the chain elements into the stream out.
+    ChainNode<T> *current;
+
+    int myarrayValues[n]; 
+    int myarrayPlithos[n];      //arxikopoihsh me 0?
+    for(current = first;current;current = current->link){
+            static int count = -1;
+            int ar = current->data ;
+
+            int i = 0;
+            bool F = false;
+            while (i < count){                  //checks if ar is already inside the array
+                if (ar == myarrayValues[i]){
+                    int myarrayPlithos[i]= myarrayPlithos[i] + 1;
+                    F = true;
+                    break;
+                }
+                i++;
+            }
+
+             count == i;
+            if (F == false){
+                count++;
+                myarrayValues[count] = ar;
+                myarrayPlithos[count] = 1;
+            }
+               
+   }
+
+    for(int i=0; i < n; i++){
+        cout << myarrayValues[i] << " , " << myarrayPlithos[i] << endl;
+    }
+
+}
+*/
 
 //overload <<
 template<class T>
