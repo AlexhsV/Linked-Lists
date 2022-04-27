@@ -55,7 +55,6 @@ class Chain{
 
 
 
-
 template<class T>
 Chain<T> :: ~Chain()
 {//Chain destructor. Delete all nodes in chain
@@ -129,8 +128,6 @@ bool Chain<T>::Find_List(int k, T& x) const
 }
 
 
-
-
 template<class T>
 int Chain<T>::Search(const T& x) const
 {//Locate x.Return position of x if found
@@ -183,7 +180,6 @@ Chain<T>& Chain<T>::Delete(int k)
 }
 
 
-
 template<class T>
 Chain<T>& Chain<T>::Insert(int k, const T& x)
 {//Insert x after k'th.
@@ -215,7 +211,6 @@ Chain<T>& Chain<T>::Insert(int k, const T& x)
 
     }
         
-
     if(!y->link)
         last =y;//new last element    
     return *this;
@@ -242,6 +237,7 @@ Chain<T>& Chain<T>::Replace(int k, const T& x)
 
 }
 
+
 template <class T>
 Chain<T>& Chain<T>::Append(const T& x)
 {// Add x at right end.
@@ -258,13 +254,10 @@ Chain<T>& Chain<T>::Append(const T& x)
     else // chain is empty
         first = last = y;
 
-
-    
     return *this;
 
-
-
 }
+
 
 template <class T>
 void Chain<T>::Swap(int i , int j)
@@ -292,6 +285,7 @@ void Chain<T>::Swap(int i , int j)
 
 }
 
+
 template<class T>
 void Chain<T>::Output(ostream& out) const
 {//Insert the chain elements into the stream out.
@@ -303,50 +297,11 @@ void Chain<T>::Output(ostream& out) const
     }
 }
 
-/*
-template<class T>
-void Chain<T>::EachNode(int n) const
-{//Insert the chain elements into the stream out.
-    ChainNode<T> *current;
-
-    int myarrayValues[n]; 
-    int myarrayPlithos[n];      //arxikopoihsh me 0?
-    for(current = first;current;current = current->link){
-            static int count = -1;
-            int ar = current->data ;
-
-            int i = 0;
-            bool F = false;
-            while (i < count){                  //checks if ar is already inside the array
-                if (ar == myarrayValues[i]){
-                    int myarrayPlithos[i]= myarrayPlithos[i] + 1;
-                    F = true;
-                    break;
-                }
-                i++;
-            }
-
-             count == i;
-            if (F == false){
-                count++;
-                myarrayValues[count] = ar;
-                myarrayPlithos[count] = 1;
-            }
-               
-   }
-
-    for(int i=0; i < n; i++){
-        cout << myarrayValues[i] << " , " << myarrayPlithos[i] << endl;
-    }
-
-}
-*/
 
 //overload <<
 template<class T>
 ostream& operator<<(ostream& out,const Chain<T>& x)
 {
-
     x.Output(out);
     return out;
 }
