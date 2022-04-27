@@ -22,7 +22,6 @@ void frequency(int arr[], int size){
             check[j] = true;
             count++;
 
-
          }
       }
 
