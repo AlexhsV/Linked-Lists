@@ -4,70 +4,15 @@
 #include <functional>
 using namespace std;
 
-/*
-  int partition(int arr[], int start, int end){
- 
-    int pivot = arr[start];
- 
-    int count = 0;
-    for (int i = start + 1; i <= end; i++) {
-        if (arr[i] <= pivot)
-            count++;
-    }
- 
-    // Giving pivot element its correct position
-    int pivotIndex = start + count;
-    swap(arr[pivotIndex], arr[start]);
- 
-    // Sorting left and right parts of the pivot element
-    int i = start, j = end;
- 
-    while (i < pivotIndex && j > pivotIndex) {
- 
-        while (arr[i] <= pivot) {
-            i++;
-        }
- 
-        while (arr[j] > pivot) {
-            j--;
-        }
- 
-        if (i < pivotIndex && j > pivotIndex) {
-            swap(arr[i++], arr[j--]);
-        }
-    }
- 
-    return pivotIndex;
-}
- 
-void quickSort(int arr[], int start, int end)
-{
- 
-    // base case
-    if (start >= end)
-        return;
- 
-    // partitioning the array
-    int p = partition(arr, start, end);
- 
-    // Sorting the left part
-    quickSort(arr, start, p - 1);
- 
-    // Sorting the right part
-    quickSort(arr, p + 1, end);
-}
-*/
 
-
-
-void frequency_histogram(int ar[], int size){  /*συναρτηση υπολογισμου συχνοτητας εμφανισης στοιχειων στον πινακα ar 
-                                                 ο οποιος περιεχει τα στοιχεια της λιστας L*/
+void frequency_histogram(int ar[], int size){  /*function that calculates the frequency of the ar's elements that
+                                                 includes the lists's (L) elements*/
                                                  
-  Chain<int> histogram;  //δημιουργια λιστας histogram
+  Chain<int> histogram;  //creation of histogram list
 
-  bool* check = new bool[size];  //δημιουργια ενος τοπικου δυναμικου πινακα check που βοηθα στην ευρεση συχνοτητας των στοιχειων
+  bool* check = new bool[size];  //create a topic dynamic array (check) that helps to find the frequency od the list's elements
 
-  for(int i=0;i<size;i++){   //αρχικοποιηση δυναμικου πινακα με το false
+  for(int i=0;i<size;i++){   //initialize the dynamic array with false state
     check[i] = false;
   }
 
@@ -75,30 +20,30 @@ void frequency_histogram(int ar[], int size){  /*συναρτηση υπολογ
       if(check[i]== true){
          continue;
       }
-      int count = 1;                     //ορισμος μετρητη ο οποιος μετραει την συχνοτητα εμφανισης ενος στοιχειου στον πινακα ar
+      int count = 1;                     //create a counter that inlcludes the frequency of every element in array(ar)
       for(int j = i+1; j<size; j++){    
                                           
-         if (ar[i] == ar[j]){           //ελεγχος ισοτητας μεταξυ του στοιχειου με το επομενο στον πινακα ar 
-            check[j] = true;           //εκχωριση της τιμης true στον πινακα check οταν ισχυει η συνθηκη 
-            count++;                  //αυξηση μετρητη count
+         if (ar[i] == ar[j]){           //check if the element of array(ar) is equal with next one
+            check[j] = true;           //set true to array (check) when the condition the equality is true
+            count++;                  //increase count
 
          }
       }
 
   //    cout<<"frequency of "<<ar[i]<<" is: " << count << endl;
 
-      histogram.Append(count);   //εισαγωγη count στην νεα λιστα histogram
+      histogram.Append(count);   //import count in new list histogram
    
    }
 
     cout << "The elements of the 'histogram' list are: ";
-    histogram.Output(cout);   //εμφανιση  στοιχειων της λιστας histogram
+    histogram.Output(cout);   //print histogram's elements
 
-    delete [] check;       //διαγραφη του τοπικου δυναμικου πινακα check
+    delete [] check;       //delete the dynamic array(check)
 }
 
 
-void bubble_sort(int ar[], int n){  //συναρτηση ταξινομησησης με ορισματα τον πινακα ar  
+void bubble_sort(int ar[], int n){  //function that sorts the elements of array (ar)  
   for(int i=0; i<n-1; i++){
     for(int j=0; j<n-1; j++){
       if(ar[j]>ar[j+1]){
@@ -126,12 +71,11 @@ int main() {
     uniform_int_distribution<int> data_element_distribution(0, 100);
     auto random_element = bind(data_element_distribution, generator);
    
-    int* ar = new int[n]; //ορισμος δυναμικου πινακα
-
+    int* ar = new int[n]; //create dynamic array 
     for (int i=0; i < n; i++){                         
       int data_element = random_element();       
-      L.Append(data_element);                   //εισαγωγη στοιχειων στην L 
-      ar[i]=data_element;                      //εισαγωγη των ιδιων στοιχειων στον πινακα ar
+      L.Append(data_element);                   //import elements on L 
+      ar[i]=data_element;                      //import the same elements on ar
     }
 
     cout<<"\nThe elements of the 'L' list are: ";
@@ -139,19 +83,19 @@ int main() {
     cout<<endl;
     cout<<endl;
     
-    bubble_sort(ar, n);                       //κληση συναρτησης για ταξινομηση πινακα ar
-  //quickSort(ar, 0, n - 1);
+    bubble_sort(ar, n);                       //call the bubble_sort function
+    
     cout<<"\nThe elements of the 'L' list sorted are: ";
     
     int i;
     for (i = 0; i < n; i++)
-        cout << ar[i] << " ";  //εμγανιση στοιχειων λιστας L μεσω του πινακα ar
+        cout << ar[i] << " ";  //print the list's L elements through ar array
     cout << endl;
 
-    frequency_histogram(ar, n); //κληση συναρτησης υπολογισμου συχνοτητας
+    frequency_histogram(ar, n); //call frequency_histogram function
    
    
-    delete [] ar; //διαγραφη δυναμικου πινακα ar
+    delete [] ar; //delete the dynamic array (ar)
 
     return 0;
  }
