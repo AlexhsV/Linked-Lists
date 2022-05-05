@@ -10,6 +10,8 @@ class ChainNode{
     friend Chain<T>;
     
     private:
+
+T times
         T data;
         ChainNode<T> *link;
 };
