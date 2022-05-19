@@ -2,7 +2,7 @@
 using namespace std;
 
 
-/*In this project we excluded the rest of the methods which are used for linked list functionality because this specific
+/*In this project we excluded the rest of the methods which are used for linked list functionality because for this specific
 purpose we did not need them*/
 
 template<class T>
